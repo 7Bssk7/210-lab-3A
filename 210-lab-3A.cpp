@@ -1,8 +1,13 @@
+// COMSC-210 | Lab 3A | Arkhip Fisnki
+// IDE used: Visual Studio Code
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
 using namespace std;
+
+const int NUM_RESTAURANTS = 4;
 
 //Restaurant structure, inside includes name, address, rating, capacity of people and status (open or closed).
 struct Restaurant{
@@ -20,12 +25,13 @@ int main(){
     //Vector for storing information about restaurants entered by the user.
     vector<Restaurant> places;
 
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < NUM_RESTAURANTS; ++i){
         cout << "Enter the information about Restaurant #" << i + 1 << endl;
         places.push_back(Place());
     }
-    for( int i = 0; i < 4; ++i){
-        cout << "Outputting infromation about Restaurant #" << i + 1 << endl;
+    //Outputting every element stored in the vector
+    for( int i = 0; i < NUM_RESTAURANTS; ++i){
+        cout << "Outputting information about Restaurant #" << i + 1 << endl;
 
         outputR(places.at(i));
     }
@@ -34,6 +40,7 @@ int main(){
 }
 
 //Function that reads users inputs from the console 
+//Returns: Restaurant's data type with information provided by the user
 Restaurant Place(){
     Restaurant temp;
     char status;
@@ -49,14 +56,19 @@ Restaurant Place(){
         cout << "Enter the Rating of the Restaurant(1-5): ";
         cin >> temp.rating;
     }
-    cout<< "Enter the Maximum Capacity of the Restaurant: ";
+    cout<< "Enter the Maximum Capacity of the Restaurant(number must be greater than 0): ";
     cin >> temp.capacity;
-    cout << "Is Restaurant is Currently Open(y - yes, it is open|n - no, it is closed): ";
+    while(temp.capacity <= 0){
+        cout << "Invalid input, please answer the question again!"<< endl;
+        cout << "Enter the Maximum Capacity of the Restaurant(number must be greater than 0): ";
+        cin >> temp.capacity;
+    }
+    cout << "Is the Restaurant Currently Open(y - yes, it is open|n - no, it is closed): ";
     cin >> status;
     status = tolower(status);
     while((status != 'n') && (status != 'y')){
         cout << "Invalid input, please answer the question again!" << endl;
-        cout << "Is Restaurant is Currently Open(y - yes, it is open|n - no, it is closed): ";
+        cout << "Is the Restaurant Currently Open(y - yes, it is open|n - no, it is closed): ";
         cin >> status;
         
         status = tolower(status);
@@ -74,6 +86,7 @@ Restaurant Place(){
 }
 
 //Function that outputs users inputs 
+//Argument: const Restaurant &r, gets the data of type restaurant(for display), which cannot be edited 
 void outputR(const Restaurant &r){
     cout << "Restaurant: " << r.name << endl;
     cout << "Restaurant's Address: " << r.address << endl;
