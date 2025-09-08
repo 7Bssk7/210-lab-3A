@@ -16,13 +16,13 @@ Restaurant Place();
 void outputR(const Restaurant &);
 
 int main(){
-
     Restaurant myRestaurant1 = Place();
     outputR(myRestaurant1);
 
     return 0;
 }
 
+//Function that reads users inputs from the console 
 Restaurant Place(){
     Restaurant temp;
     char status;
@@ -59,6 +59,7 @@ Restaurant Place(){
     return temp;
 }
 
+//Function that outputs users inputs 
 void outputR(const Restaurant &r){
     cout << "Restaurant: " << r.name << endl;
     cout << "Restaurant's Address: " << r.address << endl;
