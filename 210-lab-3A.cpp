@@ -61,5 +61,15 @@ Restaurant Place(){
 
 void outputR(const Restaurant &r){
     cout << "Restaurant: " << r.name << endl;
+    cout << "Restaurant's Address: " << r.address << endl;
+    cout << "Restaurant's Rating: " << r.rating << endl;
+    cout << "Restaurant's Capacity: " << r.capacity << endl;
+    cout << "Is Restaurant is currently open: ";
+    if(r.isOpen == 1){
+        cout << "Yes! It's open." << endl;
+    }
+    else{
+        cout << "No. It's closed" << endl;
+    }
 
 }
