@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <iomanip>
 using namespace std;
 
@@ -16,8 +17,18 @@ Restaurant Place();
 void outputR(const Restaurant &);
 
 int main(){
-    Restaurant myRestaurant1 = Place();
-    outputR(myRestaurant1);
+    //Vector for storing information about restaurants entered by the user.
+    vector<Restaurant> places;
+
+    for(int i = 0; i < 4; ++i){
+        cout << "Enter the information about Restaurant #" << i + 1 << endl;
+        places.push_back(Place());
+    }
+    for( int i = 0; i < 4; ++i){
+        cout << "Outputting infromation about Restaurant #" << i + 1 << endl;
+
+        outputR(places.at(i));
+    }
 
     return 0;
 }
@@ -47,6 +58,7 @@ Restaurant Place(){
         cout << "Invalid input, please answer the question again!" << endl;
         cout << "Is Restaurant is Currently Open(y - yes, it is open|n - no, it is closed): ";
         cin >> status;
+        
         status = tolower(status);
     }
     if(status == 'y'){
@@ -55,6 +67,8 @@ Restaurant Place(){
     else{
         temp.isOpen = false;
     }
+    cin.ignore();
+    cout << "\n";
 
     return temp;
 }
@@ -72,5 +86,6 @@ void outputR(const Restaurant &r){
     else{
         cout << "No. It's closed" << endl;
     }
+    cout << "\n";
 
 }
