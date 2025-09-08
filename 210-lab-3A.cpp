@@ -37,22 +37,29 @@ Restaurant Place(){
         cout << "Invalid input, Rating of the Restaurant must be in the range between 1 and 5." << endl;
         cout << "Enter the Rating of the Restaurant(1-5): ";
         cin >> temp.rating;
-
     }
-    cout<< "Enter the MAximum Capacity of the Restaurant: ";
+    cout<< "Enter the Maximum Capacity of the Restaurant: ";
     cin >> temp.capacity;
     cout << "Is Restaurant is Currently Open(y - yes, it is open|n - no, it is closed): ";
     cin >> status;
     status = tolower(status);
-    while((status != 'n') || (status != 'y')){
+    while((status != 'n') && (status != 'y')){
         cout << "Invalid input, please answer the question again!" << endl;
-        cout << "Enter the Rating of the Restaurant(1-5): ";
-        cin >> temp.rating;
-
+        cout << "Is Restaurant is Currently Open(y - yes, it is open|n - no, it is closed): ";
+        cin >> status;
+        status = tolower(status);
+    }
+    if(status == 'y'){
+        temp.isOpen = true;
+    }
+    else{
+        temp.isOpen = false;
     }
 
     return temp;
+}
 
-    
+void outputR(const Restaurant &r){
+    cout << "Restaurant: " << r.name << endl;
 
 }
